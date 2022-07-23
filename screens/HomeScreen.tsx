@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -7,6 +14,8 @@ import {
   SearchIcon,
   AdjustmentsIcon,
 } from "react-native-heroicons/outline";
+import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
 export default function HomeScreen() {
   const navigation = useNavigation();
 
@@ -45,6 +54,21 @@ export default function HomeScreen() {
         </View>
         <AdjustmentsIcon color="#00ccbb" />
       </View>
+      <ScrollView
+        className="bg-gray-100"
+        contentContainerStyle={{
+          paddingBottom: 100,
+        }}
+      >
+        {/* Categories */}
+        <Categories />
+        {/* Featured Rows */}
+        <FeaturedRow
+          id="1"
+          title="Featured"
+          description="Paid placements from our partners"
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
