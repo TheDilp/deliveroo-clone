@@ -31,7 +31,7 @@ const RestaurantCard = ({
 }: Props) => {
   return (
     // @ts-ignore
-    <TouchableOpacity className="bg-white mr-3 shadow w-64">
+    <TouchableOpacity className="bg-white mr-3 shadow w-64" delayPressIn={150}>
       <Image
         className="w-full h-64 rounded-sm object-cover"
         source={{
