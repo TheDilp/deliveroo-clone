@@ -3,14 +3,14 @@ import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { LocationMarkerIcon, StarIcon } from "react-native-heroicons/outline";
 import { urlFor } from "../sanity";
-import { Dish, Restaurant } from "../types";
+import { Category, Dish, Restaurant } from "../types";
 
 type Props = {
   id: string;
   imgUrl: string;
   title: string;
   rating: number;
-  genre: string;
+  genre: Category;
   address: string;
   short_description: string;
   dishes: Dish[];
@@ -62,7 +62,7 @@ const RestaurantCard = ({
         <View className="flex-row items-center space-x-1">
           <StarIcon color="green" opacity={0.5} size={22} />
           <Text className="text-xs text-gray-500">
-            <Text className="text-green-500">{rating}</Text>·
+            <Text className="text-green-500">{rating}</Text>·{genre.name}
           </Text>
         </View>
         <View className="flex-row items-center space-x-1">

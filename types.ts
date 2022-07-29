@@ -9,7 +9,7 @@ export type Restaurant = {
   long: number;
   address: string;
   rating: number;
-  type: string;
+  type: Category;
   dishes: Dish[];
 };
 
@@ -39,7 +39,7 @@ export type RestaurantScreenNavProps = {
   imgUrl: string;
   title: string;
   rating: number;
-  genre: string;
+  genre: Category;
   address: string;
   short_description: string;
   dishes: Dish[];

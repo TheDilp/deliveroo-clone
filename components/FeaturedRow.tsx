@@ -23,10 +23,14 @@ const FeaturedRow = ({ id, title, description }: Props) => {
         image,
         name,
         rating,
-        type,
+        type -> {
+          _id,
+          name
+        },
         address,
         short_description,
-        lat, long,
+        lat, 
+        long,
         dishes[] -> {
           _id,
           name,
