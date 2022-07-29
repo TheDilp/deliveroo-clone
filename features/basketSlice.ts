@@ -51,7 +51,7 @@ export const selectBaskedItemsWithId = (state: RootState, id: string) =>
 //   Go through basket -> reduce to one price
 export const selectBasketTotal = (state: RootState) =>
   state.basket.items.reduce(
-    (total: number, item: Dish) => (total += item.price),
+    (total: number, item: Dish) => parseFloat((total += item.price).toFixed(2)),
     0
   );
 export default basketSlice.reducer;
