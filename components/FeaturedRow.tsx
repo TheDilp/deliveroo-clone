@@ -35,7 +35,8 @@ const FeaturedRow = ({ id, title, description }: Props) => {
           _id,
           name,
           short_description, 
-          price
+          price,
+          image
         }
       }
     }[0]
