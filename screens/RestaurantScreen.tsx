@@ -5,7 +5,9 @@ import { Restaurant, RestaurantScreenNavProps } from "../types";
 import { urlFor } from "../sanity";
 import {
   ArrowLeftIcon,
+  ChevronRightIcon,
   LocationMarkerIcon,
+  QuestionMarkCircleIcon,
   StarIcon,
 } from "react-native-heroicons/outline";
 
@@ -57,7 +59,6 @@ export default function RestaurantScreen() {
         <View className="px-4 pt-4">
           <Text className="text-3xl font-bold">{title}</Text>
           <View className="flex-row space-x-2 my-1">
-            
             <View className="flex-row items-center space-x-1">
               <StarIcon color="green" opacity={0.5} size={22} />
               <Text className="text-xs text-gray-500">
@@ -68,10 +69,17 @@ export default function RestaurantScreen() {
               <LocationMarkerIcon color="gray" opacity={0.4} size={22} />
               <Text className="text-xs text-gray-500">{address}</Text>
             </View>
-          
           </View>
           <Text className="text-gray-500 mt-2 pb-4">{short_description}</Text>
         </View>
+
+        {/* @ts-ignore */}
+        <TouchableOpacity className="flex-row items-center space-x-2 p-4 border-y border-gray-300">
+          <QuestionMarkCircleIcon color="gray" opacity={0.6} size={20} />
+          <Text className="pl-2 flex-1 font-bold">Have a food allergy?</Text>
+          <ChevronRightIcon color="#00ccbb" />
+        </TouchableOpacity>
+        <View></View>
       </View>
     </ScrollView>
   );
