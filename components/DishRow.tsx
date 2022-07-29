@@ -30,6 +30,7 @@ export default function DishRow({
     dispatch(addToBasket({ _id, name, short_description, image, price }));
   }
   function removeItemFromBasket() {
+    if (!(items.length > 0)) return;
     dispatch(removeFromBasket({ id: _id }));
   }
   return (
@@ -49,7 +50,9 @@ export default function DishRow({
               value={price}
               displayType="text"
               thousandSeparator={true}
-              renderText={(value) => <Text>{value}</Text>}
+              renderText={(value) => (
+                <Text className="text-gray-500 text-sm mt-2">{value}</Text>
+              )}
               prefix={"£"}
             />
           </View>
@@ -70,8 +73,14 @@ export default function DishRow({
       {isPressed && (
         <View className="bg-white px-4">
           <View className="flex-row items-center space-x-3 pb-3">
-            <TouchableOpacity onPress={removeItemFromBasket}>
-              <MinusCircleIcon color="#00ccbb" size={40} />
+            <TouchableOpacity
+              disabled={!items.length}
+              onPress={removeItemFromBasket}
+            >
+              <MinusCircleIcon
+                color={items.length > 0 ? "#00ccbb" : "gray"}
+                size={40}
+              />
             </TouchableOpacity>
             <Text>{items.length}</Text>
             <TouchableOpacity onPress={addItemToBasket}>
