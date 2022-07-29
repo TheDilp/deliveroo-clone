@@ -41,7 +41,7 @@ const FeaturedRow = ({ id, title, description }: Props) => {
       .then((data) => {
         setRestaurants(data?.restaurants || []);
       });
-  }, []);
+  }, [id]);
   return (
     <View>
       <View className="mt-4 flex-row items-center justify-between px-4">

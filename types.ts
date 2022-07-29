@@ -19,6 +19,12 @@ export type Dish = {
   image: string;
 };
 
+export type Category = {
+  _id: string;
+  name: string;
+  image: string;
+};
+
 export type Featured = {
   _id: string;
   name: string;
