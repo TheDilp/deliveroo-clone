@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { LocationMarkerIcon, StarIcon } from "react-native-heroicons/outline";
-import { Dish } from "../types";
 import { urlFor } from "../sanity";
+import { Dish, Restaurant } from "../types";
 
 type Props = {
   id: string;
@@ -29,9 +30,27 @@ const RestaurantCard = ({
   long,
   lat,
 }: Props) => {
+  const navigation = useNavigation();
   return (
-    // @ts-ignore
-    <TouchableOpacity className="bg-white mr-3 shadow w-64" delayPressIn={150}>
+    <TouchableOpacity
+      // @ts-ignore
+      className="bg-white mr-3 shadow w-64"
+      delayPressIn={100}
+      onPress={() => {
+        navigation.navigate("Restaurant", {
+          id,
+          imgUrl,
+          title,
+          rating,
+          genre,
+          address,
+          short_description,
+          dishes,
+          lat,
+          long,
+        });
+      }}
+    >
       <Image
         className="w-full h-64 rounded-sm object-cover"
         source={{
