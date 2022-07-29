@@ -34,20 +34,22 @@ export type Featured = {
   restuarants: Restaurant[];
 };
 
+export type RestaurantScreenNavProps = {
+  id: string;
+  imgUrl: string;
+  title: string;
+  rating: number;
+  genre: string;
+  address: string;
+  short_description: string;
+  dishes: Dish[];
+  lat: number;
+  long: number;
+};
+
 export type RootStackParamList = {
   Home: undefined;
-  Restaurant: {
-    id: string;
-    imgUrl: string;
-    title: string;
-    rating: number;
-    genre: string;
-    address: string;
-    short_description: string;
-    dishes: Dish[];
-    lat: number;
-    long: number;
-  };
+  Restaurant: RestaurantScreenNavProps;
 };
 
 declare global {
