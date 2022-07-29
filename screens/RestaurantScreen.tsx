@@ -12,9 +12,11 @@ import {
 } from "react-native-heroicons/outline";
 import DishRow from "../components/DishRow";
 import Basket from "../components/Basket";
-
+import { useSelector } from "react-redux";
+import { selectBasketTotal } from "../features/basketSlice";
 export default function RestaurantScreen() {
   const navigation = useNavigation();
+  const total = useSelector(selectBasketTotal);
   const {
     params: {
       id,
@@ -40,7 +42,7 @@ export default function RestaurantScreen() {
   }, []);
   return (
     <>
-      <Basket />
+      {total > 0 && <Basket />}
       <ScrollView className="">
         <View className="relative">
           <Image
