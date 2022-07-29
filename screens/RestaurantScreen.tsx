@@ -10,6 +10,7 @@ import {
   QuestionMarkCircleIcon,
   StarIcon,
 } from "react-native-heroicons/outline";
+import DishRow from "../components/DishRow";
 
 export default function RestaurantScreen() {
   const navigation = useNavigation();
@@ -79,7 +80,14 @@ export default function RestaurantScreen() {
           <Text className="pl-2 flex-1 font-bold">Have a food allergy?</Text>
           <ChevronRightIcon color="#00ccbb" />
         </TouchableOpacity>
-        <View></View>
+      </View>
+      <View>
+        <Text className="px-4 pt-6 mb-3 font-bold text-xl">Menu</Text>
+        {/* Dishrows */}
+
+        {dishes.map((dish) => (
+          <DishRow key={dish._id} {...dish} />
+        ))}
       </View>
     </ScrollView>
   );
