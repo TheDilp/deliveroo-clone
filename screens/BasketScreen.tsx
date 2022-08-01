@@ -37,9 +37,10 @@ export default function BasketScreen() {
           ...temp[current._id],
           count: temp[current._id].count + 1,
         };
-
-      // Else create key and set count to 1
-      temp[current._id] = { ...current, count: 1 };
+      else {
+        // Else create key and set count to 1
+        temp[current._id] = { ...current, count: 1 };
+      }
 
       return temp;
     }, {});
@@ -47,7 +48,10 @@ export default function BasketScreen() {
   }, [items]);
 
   //   Show nowthing if there are no items
-  if (items.length === 0) return null;
+  if (items.length === 0) {
+    navigation.goBack();
+    return null;
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-white mt-10">
