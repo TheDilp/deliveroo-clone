@@ -45,11 +45,11 @@ export default function RestaurantScreen() {
   useEffect(() => {
     dispatch(
       setRestaurant({
-        id,
-        imgUrl,
-        title,
+        _id: id,
+        image: imgUrl,
+        name: title,
         rating,
-        genre,
+        type: genre,
         address,
         short_description,
         dishes,
