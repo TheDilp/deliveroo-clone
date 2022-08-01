@@ -147,6 +147,13 @@ export default function BasketScreen() {
             <Text>Order Total:</Text>
             <Text className="font-extrabold">£5.99</Text>
           </View>
+
+          {/* @ts-ignore */}
+          <TouchableOpacity className="rounded-lg bg-[#00ccbb] p-4">
+            <Text className="text-center text-white text-lg font-bold">
+              Place Order
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
