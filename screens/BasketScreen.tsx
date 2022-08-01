@@ -10,7 +10,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
-import { removeFromBasket, selectBasketItems } from "../features/basketSlice";
+import {
+  removeFromBasket,
+  selectBasketItems,
+  selectBasketTotal,
+} from "../features/basketSlice";
 import { Dish } from "../types";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import { urlFor } from "../sanity";
@@ -19,6 +23,7 @@ export default function BasketScreen() {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   const items = useSelector(selectBasketItems);
+  const total = useSelector(selectBasketTotal);
   const dispatch = useDispatch();
 
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState<{
@@ -84,6 +89,7 @@ export default function BasketScreen() {
           </TouchableOpacity>
         </View>
 
+        {/* List of added items */}
         <ScrollView>
           {Object.entries(groupedItemsInBasket).map(([key, value]) => (
             <View
@@ -118,6 +124,30 @@ export default function BasketScreen() {
             </View>
           ))}
         </ScrollView>
+        <View className="p-5 bg-white mt-5 space-y-4">
+          <View className="text-gray-400 flex-row justify-between">
+            <Text className="text-gray-400">Subtotal:</Text>
+            <Text className="text-gray-400">
+              <NumberFormat
+                value={total}
+                displayType="text"
+                thousandSeparator={true}
+                renderText={(value) => (
+                  <Text className="text-gray-400">{value}</Text>
+                )}
+                prefix={"£"}
+              />
+            </Text>
+          </View>
+          <View className="text-gray-400 flex-row justify-between">
+            <Text className="text-gray-400">Delivery Fee:</Text>
+            <Text className="text-gray-400">£5.99</Text>
+          </View>
+          <View className="flex-row justify-between">
+            <Text>Order Total:</Text>
+            <Text className="font-extrabold">£5.99</Text>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
