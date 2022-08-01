@@ -84,24 +84,26 @@ export default function BasketScreen() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView className="">
+        <ScrollView>
           {Object.entries(groupedItemsInBasket).map(([key, value]) => (
-            <View className="flex-row items-center space-x-4">
+            <View
+              key={key}
+              className="flex-row items-center space-x-4 bg-white py-2 px-4"
+            >
+              <Text className="pr-2">{value.count} x</Text>
               <Image
                 source={{
                   uri: urlFor(value.image).url(),
                 }}
                 className="w-12 h-12 rounded-full"
               />
-              <Text>
-                {value.name} x {value.count}
-              </Text>
+              <Text className="flex-1 text-sm">{value.name}</Text>
               <NumberFormat
                 value={value.price}
                 displayType="text"
                 thousandSeparator={true}
                 renderText={(value) => (
-                  <Text className="text-gray-600 text-extrabold">{value}</Text>
+                  <Text className="text-gray-600 pr-2">{value}</Text>
                 )}
                 prefix={"£"}
               />
