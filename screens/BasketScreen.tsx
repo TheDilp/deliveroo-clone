@@ -1,11 +1,20 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
-import { selectBasketItems } from "../features/basketSlice";
+import { removeFromBasket, selectBasketItems } from "../features/basketSlice";
 import { Dish } from "../types";
-import { XCircleIcon } from "react-native-heroicons/outline";
+import { XCircleIcon } from "react-native-heroicons/solid";
+import { urlFor } from "../sanity";
+import NumberFormat from "react-number-format";
 export default function BasketScreen() {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
@@ -58,6 +67,51 @@ export default function BasketScreen() {
             <XCircleIcon color="#00ccbb" width={50} height={50} />
           </TouchableOpacity>
         </View>
+        <View className="flex-row items-center space-x-5 my-5 px-4 py-3 bg-white">
+          <Image
+            source={{
+              uri: "https://links.papareact.com/wru",
+            }}
+            className="w-7 h-7 bg-gray-300 p-4 rounded-full"
+          />
+          <Text className="flex-1">Deliver in 50-75mins</Text>
+          <TouchableOpacity>
+            <Text className="text-[#00ccbb]">Change</Text>
+          </TouchableOpacity>
+        </View>
+
+        <ScrollView className="">
+          {Object.entries(groupedItemsInBasket).map(([key, value]) => (
+            <View className="flex-row items-center space-x-4">
+              <Image
+                source={{
+                  uri: urlFor(value.image).url(),
+                }}
+                className="w-12 h-12 rounded-full"
+              />
+              <Text>
+                {value.name} x {value.count}
+              </Text>
+              <NumberFormat
+                value={value.price}
+                displayType="text"
+                thousandSeparator={true}
+                renderText={(value) => (
+                  <Text className="text-gray-600 text-extrabold">{value}</Text>
+                )}
+                prefix={"£"}
+              />
+              <TouchableOpacity>
+                <Text
+                  className="text-[#00ccbb] text-xs"
+                  onPress={() => dispatch(removeFromBasket({ id: key }))}
+                >
+                  Remove
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
