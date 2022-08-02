@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { TailwindProvider } from "tailwindcss-react-native";
 import "tailwindcss-react-native/types.d";
 import BasketScreen from "./screens/BasketScreen";
+import DeliveryScreen from "./screens/DeliveryScreen";
 import HomeScreen from "./screens/HomeScreen";
 import PreparingOrderScreen from "./screens/PreparingOrderScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
@@ -30,6 +31,14 @@ export default function App() {
               name="PreparingOrder"
               component={PreparingOrderScreen}
               options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Delivery"
+              component={DeliveryScreen}
+              options={{
+                presentation: "fullScreenModal",
                 headerShown: false,
               }}
             />
