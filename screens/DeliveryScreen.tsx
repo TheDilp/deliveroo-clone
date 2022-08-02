@@ -1,22 +1,30 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { XIcon } from "react-native-heroicons/solid";
 import { Bar } from "react-native-progress";
 import MapView, { Marker } from "react-native-maps";
 import { openURL } from "expo-linking";
+import { clearBasket } from "../features/basketSlice";
 
 export default function DeliveryScreen() {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
+  const dispatch = useDispatch();
+
   return (
     <View className="bg-[#00ccbb] flex-1">
       <SafeAreaView className="z-50">
         <View className="flex-row justify-between items-center p-5">
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(clearBasket());
+              navigation.navigate("Home");
+            }}
+          >
             <XIcon color="white" size={30} />
           </TouchableOpacity>
           <Text className="font-light text-white text-lg">Order Help</Text>

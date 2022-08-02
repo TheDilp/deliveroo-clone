@@ -13,6 +13,7 @@ interface RemoveBasketAction {
     id: string;
   };
 }
+
 const initialState: BasketState = {
   items: [],
 };
@@ -34,10 +35,13 @@ export const basketSlice = createSlice({
         state.items = newBasket;
       }
     },
+
+    clearBasket: (state: BasketState) => ({ ...initialState }),
   },
 });
 
-export const { addToBasket, removeFromBasket } = basketSlice.actions;
+export const { addToBasket, removeFromBasket, clearBasket } =
+  basketSlice.actions;
 
 // Select all items
 
