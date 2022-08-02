@@ -52,6 +52,7 @@ export type RootStackParamList = {
   Restaurant: RestaurantScreenNavProps;
   Basket: any;
   PreparingOrder: any;
+  Delivery: any;
 };
 
 declare global {
