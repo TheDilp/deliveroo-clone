@@ -21,6 +21,7 @@ export default function DeliveryScreen() {
         <View className="flex-row justify-between items-center p-5">
           <TouchableOpacity
             onPress={() => {
+              // Clear basket and navigate to home screen
               dispatch(clearBasket());
               navigation.navigate("Home");
             }}
@@ -49,7 +50,9 @@ export default function DeliveryScreen() {
             indeterminate={true}
           />
           <Text className="mt-3 text-center text-xs text-gray-500">
-            Your order at {restaurant?.name} is being prepared
+            {/* Safeguard if restaurant name is missing */}
+            Your order {restaurant?.name ? `at ${restaurant.name}` : ""} is
+            being prepared
           </Text>
         </View>
       </SafeAreaView>

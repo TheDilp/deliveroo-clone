@@ -143,7 +143,7 @@ export default function BasketScreen() {
           </View>
           <View className="flex-row justify-between">
             <Text>Order Total:</Text>
-            <Text className="font-extrabold">£{total + 5.99}</Text>
+            <Text className="font-extrabold">£{(total + 5.99).toFixed(2)}</Text>
           </View>
 
           <TouchableOpacity
