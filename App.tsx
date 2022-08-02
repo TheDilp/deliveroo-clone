@@ -5,6 +5,7 @@ import { TailwindProvider } from "tailwindcss-react-native";
 import "tailwindcss-react-native/types.d";
 import BasketScreen from "./screens/BasketScreen";
 import HomeScreen from "./screens/HomeScreen";
+import PreparingOrderScreen from "./screens/PreparingOrderScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
 import { store } from "./store";
 export default function App() {
@@ -22,6 +23,13 @@ export default function App() {
               options={{
                 animation: "slide_from_bottom",
                 animationDuration: 10,
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="PreparingOrder"
+              component={PreparingOrderScreen}
+              options={{
                 headerShown: false,
               }}
             />

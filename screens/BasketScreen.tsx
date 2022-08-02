@@ -145,11 +145,14 @@ export default function BasketScreen() {
           </View>
           <View className="flex-row justify-between">
             <Text>Order Total:</Text>
-            <Text className="font-extrabold">£5.99</Text>
+            <Text className="font-extrabold">£{total + 5.99}</Text>
           </View>
 
-          {/* @ts-ignore */}
-          <TouchableOpacity className="rounded-lg bg-[#00ccbb] p-4">
+          <TouchableOpacity
+            // @ts-ignore
+            className="rounded-lg bg-[#00ccbb] p-4"
+            onPress={() => navigation.navigate("PreparingOrder")}
+          >
             <Text className="text-center text-white text-lg font-bold">
               Place Order
             </Text>
