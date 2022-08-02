@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { XIcon } from "react-native-heroicons/solid";
+import { Bar } from "react-native-progress";
+import MapView from "react-native-maps";
 
 export default function DeliveryScreen() {
   const navigation = useNavigation();
@@ -30,9 +32,27 @@ export default function DeliveryScreen() {
               className="w-20 h-20"
             />
           </View>
+
+          <Bar
+            className="mt-2"
+            width={325}
+            color="#00ccbb"
+            indeterminate={true}
+          />
         </View>
       </SafeAreaView>
-      <Text>DeliveryScreen</Text>
+      <View>
+        <MapView
+          initialRegion={{
+            latitude: restaurant?.lat || 0,
+            longitude: restaurant?.long || 0,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          }}
+          className="flex-1 w-full h-full z-0 -mt-10"
+          mapType="mutedStandard"
+        ></MapView>
+      </View>
     </View>
   );
 }
