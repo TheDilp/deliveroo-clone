@@ -5,6 +5,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -17,7 +18,6 @@ import {
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 import sanity from "../sanity";
-import category from "../sanity/schemas/category";
 import { Featured, Restaurant } from "../types";
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -42,12 +42,17 @@ export default function HomeScreen() {
       .then((data) => setFeatured(data));
   }, []);
   return (
-    <SafeAreaView className="mt-7 bg-white ">
+    <SafeAreaView
+      className="bg-white "
+      style={{
+        paddingTop: StatusBar.currentHeight,
+      }}
+    >
       {/* Header */}
 
       <View className="flex-row pb-3 items-center mx-4 space-x-2">
         <Image
-          source={{ uri: "https://links.papareact.com/wru" }}
+          source={require("../assets/drivericon.jpeg")}
           className="w-7 h-7 bg-gray-300 p-4 rounded-full"
         />
         <View className="flex-1">
