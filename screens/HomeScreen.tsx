@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   StatusBar,
+  FlatList,
 } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -19,13 +20,41 @@ import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 import sanity from "../sanity";
 import { Featured, Restaurant } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectAllRestaurants,
+  setAllRestaurants,
+} from "../features/restaurantSlice";
+import SearchListItem from "../components/SearchListItem";
 export default function HomeScreen() {
   const navigation = useNavigation();
   const [featured, setFeatured] = useState<Featured[]>([]);
+  const [filter, setFilter] = useState("");
+  const dispatch = useDispatch();
+  const restaurants = useSelector(selectAllRestaurants);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+  }, []);
+
+  useEffect(() => {
+    sanity
+      .fetch(
+        `
+  *[_type == 'restaurant'] {
+    _id,
+    image,
+    name,
+    rating,
+    type -> {
+    _id,
+    name
+        },
+  }
+  `
+      )
+      .then((data) => dispatch(setAllRestaurants(data)));
   }, []);
 
   useEffect(() => {
@@ -41,6 +70,7 @@ export default function HomeScreen() {
       )
       .then((data) => setFeatured(data));
   }, []);
+
   return (
     <SafeAreaView
       className="bg-white "
@@ -71,6 +101,10 @@ export default function HomeScreen() {
           <TextInput
             placeholder="Restaurants and cuisines"
             keyboardType="default"
+          />
+          <FlatList
+            data={restaurants}
+            renderItem={({ item }) => <SearchListItem {...item} />}
           />
         </View>
         <AdjustmentsIcon color="#00ccbb" />
