@@ -68,7 +68,6 @@ export default function RestaurantScreen() {
   }, [dispatch]);
 
   if (!restaurant) return null;
-  console.log(restaurant);
   return (
     <>
       {total > 0 && <Basket />}

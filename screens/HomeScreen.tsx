@@ -104,6 +104,7 @@ export default function HomeScreen() {
       {filter !== "" && (
         <View className="flex-row space-x-2 ml-4 pr-14 z-50">
           <FlatList
+            keyboardShouldPersistTaps="handled"
             className="bg-white absolute w-full shadow-2xl rounded-b-lg"
             data={restaurants.filter((rest) =>
               rest.name.toLowerCase().includes(filter.toLowerCase())
