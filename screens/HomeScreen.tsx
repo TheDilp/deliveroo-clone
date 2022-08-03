@@ -39,12 +39,14 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
+    // Basic info to be used by the search component
     sanity
       .fetch(
         `
   *[_type == 'restaurant'] {
     _id,
-    name,    
+    name,
+    image    
   }
   `
       )
@@ -90,7 +92,7 @@ export default function HomeScreen() {
 
       {/* Search */}
       <View className="flex-row items-center space-x-2 pb-2 mx-4">
-        <View className="flex-row items-center flex-1 space-x-2 bg-gray-200 p-3 mr-4">
+        <View className="flex-row items-center flex-1 space-x-2 bg-gray-200 p-3">
           <SearchIcon color="gray" size={20} />
           <TextInput
             placeholder="Restaurants"
@@ -99,10 +101,9 @@ export default function HomeScreen() {
             onChangeText={(newText) => setFilter(newText)}
           />
         </View>
-        <AdjustmentsIcon color="#00ccbb" />
       </View>
       {filter !== "" && (
-        <View className="flex-row space-x-2 ml-4 pr-14 z-50">
+        <View className="flex-row space-x-2 ml-4 pr-4 z-50">
           <FlatList
             keyboardShouldPersistTaps="handled"
             className="bg-white absolute w-full shadow-2xl rounded-b-lg"
