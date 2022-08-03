@@ -1,42 +1,36 @@
+import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  SafeAreaView,
+  FlatList,
   Image,
-  TextInput,
+  SafeAreaView,
   ScrollView,
   StatusBar,
-  FlatList,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
   ChevronDownIcon,
-  UserIcon,
   SearchIcon,
-  AdjustmentsIcon,
+  UserIcon,
 } from "react-native-heroicons/outline";
+import { useDispatch, useSelector } from "react-redux";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
-import sanity from "../sanity";
-import { Featured } from "../types";
-import { useDispatch, useSelector } from "react-redux";
+import SearchListItem from "../components/SearchListItem";
 import {
   selectAllRestaurants,
   setAllRestaurants,
 } from "../features/restaurantSlice";
-import SearchListItem from "../components/SearchListItem";
+import sanity from "../sanity";
+import { Featured } from "../types";
 export default function HomeScreen() {
   const navigation = useNavigation();
   const [featured, setFeatured] = useState<Featured[]>([]);
   const [filter, setFilter] = useState("");
   const dispatch = useDispatch();
   const restaurants = useSelector(selectAllRestaurants);
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   useEffect(() => {
     // Basic info to be used by the search component
@@ -66,6 +60,13 @@ export default function HomeScreen() {
       )
       .then((data) => setFeatured(data));
   }, []);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      setFilter("");
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <SafeAreaView

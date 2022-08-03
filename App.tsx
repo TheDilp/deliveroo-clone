@@ -16,7 +16,13 @@ export default function App() {
       <Provider store={store}>
         <TailwindProvider>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
             <Stack.Screen name="Restaurant" component={RestaurantScreen} />
             <Stack.Screen
               name="Basket"

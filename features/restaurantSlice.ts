@@ -40,4 +40,5 @@ export const selectRestaurant = (state: RootState) =>
 
 export const selectAllRestaurants = (state: RootState) =>
   state.restaurant.allRestaurants;
+
 export default restaurantSlice.reducer;
