@@ -58,7 +58,7 @@ export default function RestaurantScreen() {
           price,
           image
         }
-    }
+    }[0]
     `,
         {
           id,
@@ -67,6 +67,8 @@ export default function RestaurantScreen() {
       .then((data) => dispatch(setRestaurant(data)));
   }, [dispatch]);
 
+  if (!restaurant) return null;
+  console.log(restaurant);
   return (
     <>
       {total > 0 && <Basket />}
