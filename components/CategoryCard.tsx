@@ -14,9 +14,9 @@ const CategoryCard = ({ imgUrl, title }: Props) => {
         source={{
           uri: imgUrl,
         }}
-        className="w-20 h-20 rounded"
+        className="w-28 h-28 rounded"
       />
-      <Text className="absolute bottom-1 left-1 text-white font-bold">
+      <Text className="absolute w-full text-center bottom-1 shadow-lg text-white font-bold">
         {title}
       </Text>
     </TouchableOpacity>
