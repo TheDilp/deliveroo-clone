@@ -99,16 +99,25 @@ export default function HomeScreen() {
         <View className="flex-row items-center flex-1 space-x-2 bg-gray-200 p-3 mr-4">
           <SearchIcon color="gray" size={20} />
           <TextInput
-            placeholder="Restaurants and cuisines"
+            placeholder="Restaurants"
             keyboardType="default"
-          />
-          <FlatList
-            data={restaurants}
-            renderItem={({ item }) => <SearchListItem {...item} />}
+            value={filter}
+            onChangeText={(newText) => setFilter(newText)}
           />
         </View>
         <AdjustmentsIcon color="#00ccbb" />
       </View>
+      {filter !== "" && (
+        <View className="flex-row space-x-2 ml-4 pr-14 z-50">
+          <FlatList
+            className="bg-white absolute w-full shadow-2xl rounded-b-lg"
+            data={restaurants.filter((rest) =>
+              rest.name.toLowerCase().includes(filter.toLowerCase())
+            )}
+            renderItem={({ item }) => <SearchListItem {...item} />}
+          />
+        </View>
+      )}
       <ScrollView
         className="bg-gray-100"
         contentContainerStyle={{
