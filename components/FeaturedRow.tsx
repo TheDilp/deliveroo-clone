@@ -28,16 +28,6 @@ const FeaturedRow = ({ id, title, description }: Props) => {
           name
         },
         address,
-        short_description,
-        lat, 
-        long,
-        dishes[] -> {
-          _id,
-          name,
-          short_description, 
-          price,
-          image
-        }
       }
     }[0]
     `,
@@ -68,16 +58,12 @@ const FeaturedRow = ({ id, title, description }: Props) => {
         {restaurants?.map((restaurant) => (
           <RestaurantCard
             key={restaurant._id}
-            id={restaurant._id}
-            imgUrl={restaurant.image}
-            title={restaurant.name}
-            rating={restaurant.rating}
-            genre={restaurant.type}
+            _id={restaurant._id}
+            name={restaurant.name}
+            type={restaurant.type}
             address={restaurant.address}
-            short_description={restaurant.short_description}
-            dishes={restaurant.dishes}
-            lat={restaurant.lat}
-            long={restaurant.long}
+            image={restaurant.image}
+            rating={restaurant.rating}
           />
         ))}
       </ScrollView>

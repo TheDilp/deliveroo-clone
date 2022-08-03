@@ -36,15 +36,6 @@ export type Featured = {
 
 export type RestaurantScreenNavProps = {
   id: string;
-  imgUrl: string;
-  title: string;
-  rating: number;
-  genre: Category;
-  address: string;
-  short_description: string;
-  dishes: Dish[];
-  lat: number;
-  long: number;
 };
 
 export type RootStackParamList = {

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Dish, Restaurant } from "../types";
+import { Restaurant } from "../types";
 
 export interface RestaurantState {
   allRestaurants: Restaurant[];

@@ -5,32 +5,19 @@ import { LocationMarkerIcon, StarIcon } from "react-native-heroicons/outline";
 import { urlFor } from "../sanity";
 import { Category, Dish, Restaurant } from "../types";
 
-type Props = {
-  id: string;
-  imgUrl: string;
-  title: string;
-  rating: number;
-  genre: Category;
-  address: string;
-  short_description: string;
-  dishes: Dish[];
-  long: number;
-  lat: number;
-};
-
 const RestaurantCard = ({
-  id,
-  imgUrl,
-  title,
+  _id: id,
+  image,
+  name,
   rating,
-  genre,
+  type,
   address,
-  short_description,
-  dishes,
-  long,
-  lat,
-}: Props) => {
+}: Pick<
+  Restaurant,
+  "_id" | "image" | "name" | "address" | "type" | "rating"
+>) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       // @ts-ignore
@@ -39,30 +26,21 @@ const RestaurantCard = ({
       onPress={() => {
         navigation.navigate("Restaurant", {
           id,
-          imgUrl,
-          title,
-          rating,
-          genre,
-          address,
-          short_description,
-          dishes,
-          lat,
-          long,
         });
       }}
     >
       <Image
         className="w-full h-64 rounded-sm object-cover"
         source={{
-          uri: urlFor(imgUrl).url(),
+          uri: urlFor(image).url(),
         }}
       />
       <View className="px-3 pb-4">
-        <Text className="font-bold text-lg pt-2">{title}</Text>
+        <Text className="font-bold text-lg pt-2">{name}</Text>
         <View className="flex-row items-center space-x-1">
           <StarIcon color="green" opacity={0.5} size={22} />
           <Text className="text-xs text-gray-500">
-            <Text className="text-green-500">{rating}</Text>·{genre.name}
+            <Text className="text-green-500">{rating}</Text>·{type.name}
           </Text>
         </View>
         <View className="flex-row items-center space-x-1">

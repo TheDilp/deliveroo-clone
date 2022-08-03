@@ -19,7 +19,7 @@ import {
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 import sanity from "../sanity";
-import { Featured, Restaurant } from "../types";
+import { Featured } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAllRestaurants,
@@ -44,13 +44,7 @@ export default function HomeScreen() {
         `
   *[_type == 'restaurant'] {
     _id,
-    image,
-    name,
-    rating,
-    type -> {
-    _id,
-    name
-        },
+    name,    
   }
   `
       )
